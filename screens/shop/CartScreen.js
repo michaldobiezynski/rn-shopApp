@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Flatlist, StyleSheet, Button } from "react-native";
+import { View, Text, FlatList, Button, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
 import Colors from "../../constants/Colors";
@@ -9,7 +9,6 @@ const CartScreen = (props) => {
   const cartTotalAmount = useSelector((state) => state.cart.totalAmount);
   const cartItems = useSelector((state) => {
     const transformedCartItems = [];
-
     for (const key in state.cart.items) {
       transformedCartItems.push({
         productId: key,
@@ -35,7 +34,7 @@ const CartScreen = (props) => {
           disabled={cartItems.length === 0}
         />
       </View>
-      <Flatlist
+      <FlatList
         data={cartItems}
         keyExtractor={(item) => item.productId}
         renderItem={(itemData) => (
